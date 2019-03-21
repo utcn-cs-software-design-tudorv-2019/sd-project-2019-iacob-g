@@ -1,6 +1,6 @@
-Amanet-Pariu
+Pawn-shop bets
 
-O aplicatie care permite pariuri in diverse domenii (ex: sportive) cu obiecte.
-Va exista un admin prezent fizic la amanet, care receptioneaza obiectele, le evalueaza valoarea si le introduce in baza de date.
-Userul isi va vedea obiectele amanetate si le va putea paria pe diferite cote.
-In cazul in care castiga, sistemul va alege unul sau mai multe obiecte astfel incat valoarea lor va fi cat mai apropiata de castig.
+An application which allows placing physical objects as bets.
+The admin will be physically present at the pawn-shop, will receive the item and evaluate it's value, insert it into the database and add it to the user's account.
+The user can bet one or more items on different events with different stakes.
+The system will find the closest value item(s) from users who lost bets and assign them to the winners.
