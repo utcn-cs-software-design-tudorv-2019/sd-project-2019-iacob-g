@@ -55,7 +55,7 @@ public class LoginInterface extends Application{
 		    		int rtn = userOperations.isValidLogin(userTextField.getText()); 
 		    		if (rtn != 0) {
 		    			primaryStage.hide();
-		    			//new UserInterface(rtn);
+		    			new UserInterface(rtn);
 		    			System.out.println("User Login");
 		    		} else {
 		    			System.out.println("Invalid Login");

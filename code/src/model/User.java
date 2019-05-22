@@ -8,6 +8,11 @@ public class User {
 		this.id = id;
 		this.name = name;
 	}
+	
+	public User() {
+		this.id = 0;
+		this.name = "";
+	}
 
 	public Integer getId() {
 		return id;

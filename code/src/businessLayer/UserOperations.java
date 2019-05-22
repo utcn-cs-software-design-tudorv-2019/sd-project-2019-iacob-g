@@ -5,7 +5,7 @@ import model.User;
 
 public class UserOperations {
 	
-	UserDAO userDAO = new UserDAO();
+	private UserDAO userDAO = new UserDAO();
 	
 	public int isValidLogin(String name) {
 		for (User user : userDAO.getUsers()) {

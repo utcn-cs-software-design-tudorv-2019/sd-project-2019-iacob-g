@@ -12,6 +12,10 @@ public class Event {
 		this.odds = odds;
 	}
 	
+	public Event() {
+		this.id = 0;
+	}
+	
 	public Event(String title) {
 		this.title = title;
 	}
