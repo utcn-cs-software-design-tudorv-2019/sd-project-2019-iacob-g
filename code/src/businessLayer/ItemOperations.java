@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import dataAccessLayer.ItemDAO;
 import model.Item;
+import model.User;
 
 public class ItemOperations {
 	
@@ -27,5 +28,20 @@ public class ItemOperations {
 	
 	public ArrayList<Item> getItems(){
 		return itemDAO.getItems();
+	}
+	
+	public void addItem(String name, User user, String value) {
+		if (name.equals("") || value.equals(""))
+			return;
+		
+		Integer intValue;
+		try {
+			intValue = Integer.parseInt(value);
+			itemDAO.insertItem(name, user.getId(), intValue);
+		}
+		catch(Exception e) {
+			System.out.println(e);
+			return;
+		}
 	}
 }

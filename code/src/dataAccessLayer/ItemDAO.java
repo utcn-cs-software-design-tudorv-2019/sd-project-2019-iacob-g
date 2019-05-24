@@ -128,4 +128,17 @@ public class ItemDAO {
 		}
 	}
 	
+	public void insertItem(String name, Integer userID, Integer value) {
+		try {
+			pStat = con.prepareStatement("insert into items (name, id_user, value) values (?, ?, ?)");
+			
+			pStat.setString(1, name);
+			pStat.setInt(2, userID);
+			pStat.setInt(3, value);
+			pStat.execute();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
 }

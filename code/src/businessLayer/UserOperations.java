@@ -20,4 +20,10 @@ public class UserOperations {
 	public ArrayList<User> getUsers(){
 		return userDAO.getUsers();
 	}
+	
+	public void addUser(String name) {
+		if (name.equals(""))
+			return;
+		userDAO.insertUser(name);
+	}
 }

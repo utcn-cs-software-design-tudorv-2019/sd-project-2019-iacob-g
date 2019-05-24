@@ -41,4 +41,10 @@ public class EventOperations {
 		
 		eventDAO.updateOdds(eventID, newOdds);
 	}
+	
+	public void addEvent(String title) {
+		if (title.equals(""))
+			return;
+		eventDAO.insertEvent(title);
+	}
 }

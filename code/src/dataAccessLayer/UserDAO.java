@@ -72,4 +72,15 @@ public class UserDAO {
 			return new User();
 		}
 	}
+	
+	public void insertUser(String name) {
+		try {
+			pStat = con.prepareStatement("insert into users (name) values (?)");
+			
+			pStat.setString(1, name);
+			pStat.execute();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 }

@@ -88,4 +88,15 @@ public class EventDAO {
 			System.out.println(e);
 		}
 	}
+	
+	public void insertEvent(String title) {
+		try {
+			pStat = con.prepareStatement("insert into events (title) values (?)");
+			
+			pStat.setString(1, title);
+			pStat.execute();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 }
