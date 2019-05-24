@@ -75,4 +75,17 @@ public class EventDAO {
 			return new Event();
 		}
 	}
+	
+	public void updateOdds(Integer eventID, float odds) {
+		try {
+			pStat = con.prepareStatement("update events set odds = ? where id = ?;");
+			pStat.setFloat(1, odds);
+			pStat.setInt(2, eventID);
+			
+			pStat.execute();
+			
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 }

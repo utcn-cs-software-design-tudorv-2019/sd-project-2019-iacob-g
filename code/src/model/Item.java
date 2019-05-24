@@ -46,14 +46,33 @@ public class Item {
 	}
 	
 	public String getEventTitle() {
+		if (bet.getId() == 0)
+			return "-";
 		return bet.getEventTitle();
 	}
 	
 	public float getPossibleWin() {
-		return value * bet.getEventOdds();
+		if (bet.getId() == 0)
+			return 0;
+		if (bet.isPro())
+			return value * bet.getEventOdds();
+		else
+			return value * (1 / bet.getEventOdds());
 	}
 	
 	public boolean isPro() {
 		return bet.isPro();
+	}
+	
+	public Integer getEventId() {
+		return bet.getEventId();
+	}
+	
+	public String getOwner() {
+		return user.getName();
+	}
+	
+	public Bet getBet() {
+		return bet;
 	}
 }

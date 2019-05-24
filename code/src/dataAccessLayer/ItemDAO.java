@@ -4,10 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Types;
 import java.util.ArrayList;
 
-import model.Bet;
 import model.Item;
 import model.User;
 
@@ -18,6 +19,7 @@ public class ItemDAO {
 	private ResultSet resSet = null;
 	private PreparedStatement pStat = null;
 	BetDAO betDAO = new BetDAO();
+	UserDAO userDAO = new UserDAO();
 	
 	
 	public ItemDAO() {
@@ -78,6 +80,52 @@ public class ItemDAO {
 		}
 		
 		return rtn;
+	}
+	
+	public ArrayList<Item> getItemsNotBetByUserId(Integer id){
+		ArrayList<Item> rtn = new ArrayList<Item>();
+		try {
+			pStat = con.prepareStatement("select * from items where id_user = ? and id_bet is null;");
+			pStat.setInt(1, id);
+			resSet = pStat.executeQuery();
+			while (resSet.next()) {
+				rtn.add(new Item(resSet.getInt("id"), new User(), betDAO.getBetById(resSet.getInt("id_bet")), resSet.getInt("value"), resSet.getString("name")));
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		return rtn;
+	}
+	
+	public ArrayList<Item> getItems(){
+		ArrayList<Item> rtn = new ArrayList<Item>();
+		try {
+			stat = con.createStatement();
+			resSet = stat.executeQuery("select * from items;");
+			while (resSet.next()) {
+				rtn.add(new Item(resSet.getInt("id"), userDAO.getUserById(resSet.getInt("id_user")), betDAO.getBetById(resSet.getInt("id_bet")), resSet.getInt("value"), resSet.getString("name")));
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		return rtn;
+	}
+	
+	public void updateItemBet(Integer itemID, Integer betID) {
+		try {
+			pStat = con.prepareStatement("update items set id_bet = ? where id = ?");
+			pStat.setInt(2, itemID);
+			if (betID == 0)
+				pStat.setNull(1, Types.INTEGER);
+			else
+				pStat.setInt(1, betID);
+			
+			pStat.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

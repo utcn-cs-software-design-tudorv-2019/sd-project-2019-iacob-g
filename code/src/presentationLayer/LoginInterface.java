@@ -49,7 +49,7 @@ public class LoginInterface extends Application{
 		    	if (userTextField.getText().equals("admin")) {
 		    		primaryStage.hide();
 		    		System.out.println("Admin Login");
-		    		//new AdminInterface();
+		    		new AdminInterface();
 		    	} else {
 		    		UserOperations userOperations = new UserOperations();
 		    		int rtn = userOperations.isValidLogin(userTextField.getText()); 

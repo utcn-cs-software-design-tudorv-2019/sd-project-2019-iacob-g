@@ -2,6 +2,7 @@ package presentationLayer;
 
 import java.util.ArrayList;
 
+import businessLayer.BetOperations;
 import businessLayer.EventOperations;
 import businessLayer.ItemOperations;
 import javafx.collections.FXCollections;
@@ -23,6 +24,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import model.Bet;
 import model.Event;
 import model.Item;
 
@@ -30,6 +32,7 @@ public class UserInterface {
 	
 	private EventOperations eventOperations = new EventOperations();
 	private ItemOperations itemOperations = new ItemOperations();
+	private BetOperations betOperations = new BetOperations();
 	
 	public UserInterface(Integer userID){
 		Stage secondStage = new Stage();
@@ -150,7 +153,7 @@ public class UserInterface {
 		menuBet.add(new Label("Event:"), 2, 0);
 		menuBet.add(new Label("Verdict:"), 3, 0);
 		
-		ArrayList<Item> itemList = itemOperations.getItemsBetByUserId(userID);
+		ArrayList<Item> itemList = itemOperations.getItemsNotBetByUserId(userID);
 		ArrayList<Event> eventList = eventOperations.getEvents();
 		
 		ComboBox<Item> itemComboBox = new ComboBox<Item>(FXCollections.observableArrayList(itemList));
@@ -205,9 +208,11 @@ public class UserInterface {
 		    	else 
 		    		pro = true;
 		    	
-		    	// update item
-		    	// insert bet
-		    	// in BetOperations sa se updateze si odd-urile la Event
+		    	Bet bet = new Bet(0, selectedEvent, pro);
+		    	Integer insertedBetID = betOperations.addBet(bet);
+		    	
+		    	itemOperations.updateItemBet(selectedItem.getId(), insertedBetID);
+		    	eventOperations.updateEventOdds(selectedEvent.getId(), itemOperations.getItems());
 		    	
 		    	
 		    }

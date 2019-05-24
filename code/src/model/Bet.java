@@ -42,4 +42,8 @@ public class Bet {
 	public float getEventOdds() {
 		return event.getOdds();
 	}
+	
+	public Integer getEventId() {
+		return event.getId();
+	}
 }

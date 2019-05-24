@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.sql.Types;
 
 import model.Bet;
 import model.User;
@@ -59,6 +60,27 @@ public class BetDAO {
 		} catch (Exception e) {
 			System.out.println(e);
 			return new Bet();
+		}
+	}
+	
+	public Integer insertBet(Bet bet) {
+		try {
+			pStat = con.prepareStatement("insert into bets (id_event, pro) values (?, ?)", Statement.RETURN_GENERATED_KEYS);
+			
+			pStat.setInt(1, bet.getEventId());
+			pStat.setBoolean(2, bet.isPro());
+			
+			pStat.executeUpdate();
+			resSet = pStat.getGeneratedKeys();
+			
+			if(resSet.next())
+				return resSet.getInt(1);
+			else
+				return 0;
+			
+		} catch (Exception e) {
+			System.out.println(e);
+			return 0;
 		}
 	}
 	

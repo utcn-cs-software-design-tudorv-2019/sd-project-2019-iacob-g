@@ -1,5 +1,7 @@
 package businessLayer;
 
+import java.util.ArrayList;
+
 import dataAccessLayer.UserDAO;
 import model.User;
 
@@ -13,5 +15,9 @@ public class UserOperations {
 				return user.getId();
 		}
 		return 0;
+	}
+	
+	public ArrayList<User> getUsers(){
+		return userDAO.getUsers();
 	}
 }
