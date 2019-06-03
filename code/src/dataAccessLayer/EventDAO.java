@@ -99,4 +99,15 @@ public class EventDAO {
 			System.out.println(e);
 		}
 	}
+	
+	public void deleteEvent(Integer id) {
+		try {
+			pStat = con.prepareStatement("delete from events where id = ?");
+			
+			pStat.setInt(1, id);
+			pStat.execute();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 }

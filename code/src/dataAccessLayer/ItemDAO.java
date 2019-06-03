@@ -141,4 +141,27 @@ public class ItemDAO {
 		}
 	}
 	
+	public void setBetNull(Integer id) {
+		try {
+			pStat = con.prepareStatement("update items set id_bet = NULL where id = ?");
+			
+			pStat.setInt(1, id);
+			pStat.execute();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
+	public void updateItemOwner(Integer itemID, Integer userID) {
+		try {
+			pStat = con.prepareStatement("update items set id_user = ? where id = ?");
+			
+			pStat.setInt(1, userID);
+			pStat.setInt(2, itemID);
+			pStat.execute();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
 }

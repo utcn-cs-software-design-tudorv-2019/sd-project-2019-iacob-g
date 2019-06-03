@@ -68,6 +68,10 @@ public class Item {
 		return bet.getEventId();
 	}
 	
+	public User getUser() {
+		return user;
+	}
+	
 	public String getOwner() {
 		return user.getName();
 	}

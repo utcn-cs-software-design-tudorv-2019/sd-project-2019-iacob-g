@@ -310,11 +310,18 @@ public class AdminInterface {
 			 
 		    @Override
 		    public void handle(ActionEvent e) {
-		    	// TODO: big boy code
+		    	boolean won;
+		    	
+		    	if (concludeEventComboBox.getValue().equals("WIN"))
+		    		won = true;
+		    	else
+		    		won = false;
+		    	
+		    	eventOperations.concludeEvent(eventComboBox.getValue(), won);
 		    }
 		});
 		
-		menuConcludeEvent.add(btnAddItemConfirm, 2, 2);
+		menuConcludeEvent.add(btnConcludeEventConfirm, 2, 2);
 		
 		btnConcludeEvent.setOnAction(new EventHandler<ActionEvent>() {
 			 

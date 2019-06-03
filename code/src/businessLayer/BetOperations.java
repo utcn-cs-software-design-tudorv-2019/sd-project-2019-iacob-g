@@ -10,5 +10,9 @@ public class BetOperations {
 	public Integer addBet(Bet bet) {
 		return betDAO.insertBet(bet);
 	}
+	
+	public void deleteBet(Integer id) {
+		betDAO.deleteBet(id);
+	}
 
 }

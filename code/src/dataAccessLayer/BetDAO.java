@@ -84,5 +84,15 @@ public class BetDAO {
 		}
 	}
 	
+	public void deleteBet(Integer id) {
+		try {
+			pStat = con.prepareStatement("delete from bets where id = ?;");
+			pStat.setInt(1, id);
+			pStat.execute();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
 	
 }

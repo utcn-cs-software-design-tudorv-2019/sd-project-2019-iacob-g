@@ -44,4 +44,12 @@ public class ItemOperations {
 			return;
 		}
 	}
+	
+	public void setBetNull(Integer id) {
+		itemDAO.setBetNull(id);
+	}
+	
+	public void reassignItem(Integer itemID, Integer userID) {
+		itemDAO.updateItemOwner(itemID, userID);
+	}
 }
